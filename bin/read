@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+run_mode=READ
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -m | --m )    run_mode=$1
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+(cd src && PYTHONPATH=$(pwd)/.. RUN_MODE=$run_mode python main.py)
