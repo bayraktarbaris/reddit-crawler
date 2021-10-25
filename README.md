@@ -5,39 +5,19 @@
 pip install -r requirements.txt
 
 ## Run
+
 For writing Parquet files:\
 ```bin/write```
 
-Files are located in:
+Files are located in ```data``` folder which is under project root.
 
 For reading Parquet files:\
-```bin/write```
+```bin/read```
 
-## Data Types
-### Submission:
+## Comments
 
-| Field           | Type    |
-|-----------------|---------|
-| title           | string  |
-| selftext        | string  |
-| id              | string  |
-| upvote_ratio    | float   |
-| num_comments    | integer |
-| link_flair_text | string  |
-| score           | integer |
-| created_utc     | long    |
-| author          | string  |
-| author_fullname | string  |
-| retrieved_on    | long    |
-
-### Comment:
-
-| Field            | Type    |
-|------------------|---------|
-| body:            | string  |
-| id:              | string  |
-| score:           | integer |
-| author:          | string  |
-| author_fullname: | string  |
-| parent_id:       | string  |
-| created_utc:     | long    |
+1. I didn't add any data cleanup because I am not in this data domain. However, as I commented in services, we can clean
+   comments if ```"author": "[deleted]" or "body": "[removed]"```, and submissions if ```"author": "[deleted]"```
+2. I tried to add unit tests to write parquet files for already downloaded data, but it added more complexity to the
+   codebase since I should add wrapper class for "spark sqlContext".
+3. Also, I tried to add unit tests for Pushshift API but since URLs are dynamically created, it failed in some way.
